@@ -1,6 +1,4 @@
 const database = require("./database");
-const argon2 = require("argon2");
-const { hashingOptions } = require("./auth.js");
 
 const getUsers = (req, res) => {
   const initialSql = "select * from users";
