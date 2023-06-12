@@ -1,4 +1,6 @@
 const database = require("./database");
+const argon2 = require("argon2");
+const { hashingOptions } = require("./auth.js");
 
 const getUsers = (req, res) => {
   const initialSql = "select * from users";
@@ -59,6 +61,11 @@ const postUser = (req, res) => {
   const { firstname, lastname, email, city, language, hashedPassword } =
     req.body;
 
+  if (!hashedPassword) {
+    res.status(400).send("Password is required");
+    return;
+  }
+
   database
     .query(
       "INSERT INTO users(firstname, lastname, email, city, language, hashedPassword) VALUES (?, ?, ?, ?, ?, ?)",
@@ -75,12 +82,18 @@ const postUser = (req, res) => {
 
 const updateUser = (req, res) => {
   const id = parseInt(req.params.id);
-  const { firstname, lastname, email, city, language } = req.body;
+  const { firstname, lastname, email, city, language, hashedPassword } =
+    req.body;
+
+  if (!hashedPassword) {
+    res.status(400).send("Password is required");
+    return;
+  }
 
   database
     .query(
-      "update users set firstname = ?, lastname = ?, email = ?, city = ?, language = ? where id = ?",
-      [firstname, lastname, email, city, language, id]
+      "update users set firstname = ?, lastname = ?, email = ?, city = ?, language = ?, hashedPassword = ? where id = ?",
+      [firstname, lastname, email, city, language, hashedPassword, id]
     )
     .then(([result]) => {
       if (result.affectedRows === 0) {

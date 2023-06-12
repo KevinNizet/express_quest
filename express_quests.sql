@@ -14,44 +14,44 @@ INSERT INTO
 VALUES
   (
     'Citizen Kane',
-    'Orson Wells',
+    'Orson Welles',
     '1941',
-    '0',
+    'Black and White',
     120
   ),
   (
     'The Godfather',
     'Francis Ford Coppola',
     '1972',
-    '1',
+    'Color',
     180
   ),
   (
     'Pulp Fiction',
     'Quentin Tarantino',
     '1994',
-    '1',
+    'Color',
     180
   ),
   (
     'Apocalypse Now',
     'Francis Ford Coppola',
     '1979',
-    '1',
+    'Color',
     150
   ),
   (
-    '2001 a space odyssey',
+    '2001: A Space Odyssey',
     'Stanley Kubrick',
     '1968',
-    '1',
+    'Color',
     160
   ),
   (
     'The Dark Knight',
     'Christopher Nolan',
     '2008',
-    '1',
+    'Color',
     150
   );
 
@@ -63,51 +63,58 @@ CREATE TABLE users (
     lastname varchar(255) NOT NULL,
     email varchar(255) UNIQUE NOT NULL,
     city varchar(255) DEFAULT NULL,
-    language varchar(255) DEFAULT NULL
+    language varchar(255) DEFAULT NULL, 
+    hashedPassword varchar(255) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 INSERT INTO
-  users (firstname, lastname, email, city, language)
+  users (firstname, lastname, email, city, language, hashedPassword)
 VALUES
   (
     'John',
     'Doe',
     'john.doe@example.com',
     'Paris',
-    'English'
+    'English',
+    '$argon2id$v=19$m=65536,t=5,p=1$emVmZXpmemZlemVmZWR6ZXplZg$rqZkhxu5YbqCGHPNrjJZpQ'
   ),
   (
     'Valeriy',
     'Appius',
-    'valeriy.appius@example.com',
+    'valeriy.ppius@example.com',
     'Moscow',
-    'Russian'
+    'Russian',
+    '$argon2id$v=19$m=65536,t=5,p=1$emVmemVmemZlemZ6ZnpmZQ$eSetR6KPUNAGW+q+wDadcw'
   ),
   (
     'Ralf',
     'Geronimo',
     'ralf.geronimo@example.com',
     'New York',
-    'Italian'
+    'Italian',
+    '$argon2id$v=19$m=65536,t=5,p=1$emVmemVmemZlemZ6ZnpmZXphZGF6ZGQ$a0bg5DZB6H6v3jjQC81DXg'
   ),
   (
     'Maria',
     'Iskandar',
     'maria.iskandar@example.com',
     'New York',
-    'German'
+    'German',
+    '$argon2id$v=19$m=65536,t=5,p=1$emVmemVmemZlenplZHpkZnpmemZlemFkYXpkZA$V1qAnJDyMuuWG7g9yoGYXA'
   ),
   (
     'Jane',
     'Doe',
     'jane.doe@example.com',
     'London',
-    'English'
+    'English',
+    '$argon2id$v=19$m=65536,t=5,p=1$emVmemVmemZlenplZHpkZGZ6ZnpmZXphZGF6ZGQ$VCzq45PL9t8khtc44Kk5iw'
   ),
   (
     'Johanna',
     'Martino',
     'johanna.martino@example.com',
     'Milan',
-    'Spanish'
+    'Spanish',
+    '$argon2id$v=19$m=65536,t=5,p=1$emVmemVmemVmemZlenplZHpkZGZ6ZnpmZXphZGF6ZGQ$UKaGZ9hGFn/S5SBQDMe/Uw'
   );
